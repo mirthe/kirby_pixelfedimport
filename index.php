@@ -7,7 +7,8 @@ if (($user = $kirby->user()) && $user->role()->id() === 'admin') {
             'token' => option('pixelfed.token'),
             'userid' => option('pixelfed.userid'),
             'limit' => option('pixelfed.limit'),
-            'since_id' => option('pixelfed.since_id')
+            'since_id' => option('pixelfed.since_id'),
+            'contentsubfolder' => option('pixelfed.contentsubfolder')
         ],
 
         'routes' => [
@@ -20,10 +21,23 @@ if (($user = $kirby->user()) && $user->role()->id() === 'admin') {
             [
                 'pattern' => 'pixelfed/getlatest',
                 'action'  => function () {
-                    $exportdir = __DIR__ . '/temp/';
+                    $exportdir = __DIR__ . '/temp/'; // TODO move to config, use my fotofeed folder
                     include 'getlatest.php';
                 }
+            ],
+            [
+                'pattern' => 'pixelfed/pickone',
+                'action'  => function () {
+                    include 'pickone.php';
+                }
+            ],
+            [
+                'pattern' => 'pixelfed/getone',
+                'action'  => function () {
+                    include 'getone.php';
+                }
             ]
+            
         ]
         
     ]);

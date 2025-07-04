@@ -32,6 +32,14 @@ You can add optional parameters for a limit (Retrieve this many results or fewer
     'pixelfed.limit' => 10,
     'pixelfed.since_id' => 12345
 
+If you just want to retrieve a specific post, I've got a new call where you select a specific post. 
+
+   https://yoursite.com/pixelfed/pickone
+   
+This shows a listing of your most recent posts. When you click 'Download' for a post, only this post will be placed  in a subfolder of your content folder. To specify the name of your subfolder, add a new variable to your config.
+
+    'pixelfed.contentsubfolder' => 'fotofeed'
+
 ## Tweaks
 
 The posts are created in individual folders in a folder called 'temp' in this plugin. You can move them to you 'content' folder. I've added an extra level by year in my site, but you can ofcourse do something else entirely with your newly created pages.
