@@ -12,6 +12,7 @@ function storeFile($fullpath, $subfolder) {
     
     curl_setopt($ch, CURLOPT_FILE, $fp);
     curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_USERAGENT, $site->title());
     curl_exec($ch);
     curl_close($ch);
     fclose($fp);
