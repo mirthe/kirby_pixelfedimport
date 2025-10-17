@@ -7,7 +7,7 @@ $url = 'https://pixelfed.social/api/v1/accounts/verify_credentials';
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_USERAGENT, $site->title());
+curl_setopt($ch, CURLOPT_USERAGENT, kirby()->site()->title());
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Authorization: Bearer ' . $token,
     'Accept: application/json',
