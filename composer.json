@@ -1,0 +1,22 @@
+{
+    "name": "mirthe/kirby_pixelfedimport",
+    "version": "1.0",
+    "description": "Imports photo posts from Pixelfed to Kirby pages",
+    "homepage": "https://github.com/mirthe/kirby_pixelfedimport",
+    "keywords": ["kirby-plugin", "pixelfed", "import", "photos"],
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mirthe Valentijn",
+            "email": "me@Mirthe.org",
+            "homepage": "https://mirthe.org"
+        }
+    ],
+    "funding": [
+        {
+            "type": "paypal",
+            "url": "https://paypal.me/MirtheValentijn"
+        }
+    ]
+}
