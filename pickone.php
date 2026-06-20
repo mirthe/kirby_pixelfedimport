@@ -18,7 +18,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-print_r($url); exit();
+// print_r($url); exit();
 
 if (curl_errno($ch)) {
     echo 'cURL error: ' . curl_error($ch);
