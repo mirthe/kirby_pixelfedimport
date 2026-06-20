@@ -1,22 +1,17 @@
-<?php $kirby = kirby();
-$kirby->impersonate('kirby');
-
-$token = option('mirthe.pixelfed-import.token');
-$contentsubfolder = option('mirthe.pixelfed-import.contentsubfolder');
-// $userid = option('mirthe.pixelfed-import.userid');
-$postid = get('id');
+<?php 
 
 // https://beta-preview.pixelfed.io/resources/statuses#retrieve-status-by-id
-$url = 'https://pixelfed.social/api/v1/statuses/' .  $postid;
+// TODO moet veiliger, niet zomaar gebruiken!
+$url = 'https://pixelfed.social/api/v1/statuses/' .  get('id');
 
 $ch = curl_init();  
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_USERAGENT, kirby()->site()->title());
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Authorization: Bearer ' . $token,
+    'Authorization: Bearer ' . option('mirthe.pixelfed-import.token'),
     'Accept: application/json',
-    'User-Agent: MyPixelfedPHPClient/1.0'
+    'User-Agent: ' . kirby()->site()->title()
 ]);
 
 $response = curl_exec($ch);
@@ -45,7 +40,7 @@ if (curl_errno($ch)) {
 
     // Determine and create folder to store the files
     # TODO replace fotofeed with a config var!
-    $exportdir = $kirby->root('content') . '/'.$contentsubfolder.'/' . $pubdatumjaar . '/';
+    $exportdir = $kirby->root('content') . '/'.option('mirthe.pixelfed-import.contentsubfolder').'/' . $pubdatumjaar . '/';
     if (!is_dir($exportdir)) {
         mkdir($exportdir);
     }

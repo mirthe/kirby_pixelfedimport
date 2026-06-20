@@ -1,7 +1,4 @@
-<?php $kirby = kirby();
-$kirby->impersonate('kirby');
-
-$token = option('mirthe.pixelfed-import.token');
+<?php 
 $url = 'https://pixelfed.social/api/v1/accounts/verify_credentials';
 
 $ch = curl_init();
@@ -9,9 +6,9 @@ curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_USERAGENT, kirby()->site()->title());
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Authorization: Bearer ' . $token,
+    'Authorization: Bearer ' . option('mirthe.pixelfed-import.token'),
     'Accept: application/json',
-    'User-Agent: MyPixelfedPHPClient/1.0'
+    'User-Agent: ' . kirby()->site()->title()
 ]);
 
 $response = curl_exec($ch);

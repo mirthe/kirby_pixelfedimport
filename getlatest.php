@@ -1,24 +1,18 @@
-<?php $kirby = kirby();
-$kirby->impersonate('kirby');
-
-$token = option('mirthe.pixelfed-import.token');
-$userid = option('mirthe.pixelfed-import.userid');
-$limit = option('mirthe.pixelfed-import.limit');
-$since_id = option('mirthe.pixelfed-import.since_id');
+<?php 
 
 // see https://beta-preview.pixelfed.io/resources/accounts#retrieve-account-statuses
-$url = 'https://pixelfed.social/api/v1/accounts/'.$userid.'/statuses/?';
-$url .= '&limit=' . $limit;
-$url .= '&since_id=' . $since_id;
+$url = 'https://pixelfed.social/api/v1/accounts/'.option('mirthe.pixelfed-import.userid').'/statuses/?';
+$url .= '&limit=' . option('mirthe.pixelfed-import.limit');
+$url .= '&since_id=' . option('mirthe.pixelfed-import.since_id');
 
 $ch = curl_init();  
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_USERAGENT, kirby()->site()->title());
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Authorization: Bearer ' . $token,
+    'Authorization: Bearer ' . option('mirthe.pixelfed-import.token'),
     'Accept: application/json',
-    'User-Agent: MyPixelfedPHPClient/1.0'
+    'User-Agent: ' . kirby()->site()->title()
 ]);
 
 $response = curl_exec($ch);
